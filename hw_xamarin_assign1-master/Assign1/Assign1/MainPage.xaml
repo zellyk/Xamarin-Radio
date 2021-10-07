@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Assign1"
+             x:Class="Assign1.MainPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:StrToDoubleConverter x:Key="strToDouble" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout>
+
+            <Image Source="logo_champlain_college" VerticalOptions="Center" HorizontalOptions="Center"/>
+            
+            <Entry Text="{ Binding employee.Name }" Placeholder="Employee Name"/>
+            <Entry  Text="{ Binding Path=employee.Salary, Converter={StaticResource strToDouble}}"  Placeholder="Salary" Keyboard="Numeric"/>
+
+            <RadioButton IsChecked="{ Binding employee.Day }" Value="day" x:Name="dayTime" Margin="0" GroupName="time"
+                     Content="Day time" />
+            <RadioButton IsChecked="{ Binding employee.Evening }" Value="night" x:Name="evening" Margin="0" GroupName="time"
+                     Content="Evening time" />
+
+            <Grid x:Name="checkBoxes">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.10*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <CheckBox IsChecked="{ Binding Path=employee.Hockey }" Margin="0" 
+                    Grid.Row="0" Grid.Column="0"/>
+                <Label Padding="0,5,0,0"  Text="Plays Hockey" Grid.Row="0" Grid.Column="1"
+                FontSize="14"/>
+
+                <CheckBox IsChecked="{ Binding Path=employee.Basketball }" Margin="0" 
+                    Grid.Row="1" Grid.Column="0"/>
+                <Label Padding="0,5,0,0"  Text="Plays Basketball" 
+                       Grid.Row="1" Grid.Column="1"
+                FontSize="14"/>
+
+                <CheckBox IsChecked="{ Binding Path=employee.None }" Margin="0" 
+                Grid.Row="2" Grid.Column="0"/>
+                <Label Padding="0,5,0,0"  Text="Plays None" 
+                    Grid.Row="2" Grid.Column="1"
+                FontSize="14"/>
+            </Grid>
+
+            <Button Text="ADD" Clicked="AddClicked" />
+            <Button Text="Display" Clicked="DisplayClicked"/>
+
+            <CollectionView x:Name="collectionView">
+
+            </CollectionView>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
