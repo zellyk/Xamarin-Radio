@@ -30,6 +30,8 @@ namespace Assign1
 
             if(errorMessage != null)
             {
+
+                
                 await DisplayAlert("Alert", errorMessage, "OK");
                 return;
             }
